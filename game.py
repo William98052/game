@@ -16,7 +16,7 @@ playerY = 480
 # pygame on Fedora 32 doesn't support mp3. Use OGG format music.
 # https://patrickdearteaga.com/royalty-free-music/
 pygame.mixer.music.load('Intergalactic Odyssey.ogg')
-pygame.mixer.music.play(-1)
+# pygame.mixer.music.play(-1)
 
 def hamster():
     s.blit(playerImg, (playerX, playerY))
@@ -30,6 +30,8 @@ class Maze:
     def __init__(self):
         self.column = 36
         self.row = 18
+        self.player_x=1
+        self.player_y=1
         self.maze = [
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
             1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
@@ -38,12 +40,12 @@ class Maze:
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -57,11 +59,30 @@ class Maze:
         for i in range(0, self.column * self.row):
             if self.maze[bx + (by * self.column)] == 1:
                 display_surf.blit(image_surf, (bx * 44, by * 44))
+                
+            if bx == self.player_x and by == self.player_y:
+                display_surf.blit(playerImg, (bx * 44, by * 44))
 
             bx = bx + 1
             if bx > self.column - 1:
                 bx = 0
                 by = by + 1
+                
+    def down(self):
+        if self.maze[(self.player_y+1) * self.column + self.player_x] == 0:
+            self.player_y = self.player_y + 1
+        
+    def up(self):
+        if self.maze[(self.player_y-1) * self.column + self.player_x] == 0:
+            self.player_y = self.player_y - 1
+            
+    def left(self):
+        if self.maze[(self.player_y) * self.column + self.player_x - 1] == 0:
+            self.player_x = self.player_x - 1
+            
+    def right(self):
+        if self.maze[(self.player_y) * self.column + self.player_x +1] == 0:
+            self.player_x = self.player_x + 1     
 
 maze = Maze();
 
@@ -81,16 +102,15 @@ while running:
         # if keystroke is pressed check whether its right or left
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                playerX = playerX - 35
+                maze.left()
             if event.key == pygame.K_RIGHT:
-                playerX = playerX + 35
+                maze.right()
                 
-                # if keystroke is pressed check whether its right or left
-        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                playerY = playerY - 35
+                maze.up()
             if event.key == pygame.K_DOWN:
-                playerY = playerY + 35
+                maze.down()
+
     
     s.fill((192,192,192))
     ticks=pygame.time.get_ticks()
@@ -102,6 +122,6 @@ while running:
     maze.draw(s, _block_surf)
     # pygame.display.flip()
 
-    hamster()
+    # hamster()
     pygame.display.update()
     clock.tick(60)
