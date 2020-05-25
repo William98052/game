@@ -2,7 +2,7 @@ import pygame
 import pygame.freetype
 
 pygame.init()
-s=pygame.display.set_mode((1920,1080))
+s=pygame.display.set_mode((1280,1024))
 pygame.display.set_caption("Hamster escape")
 
 i=pygame.image.load('./hamster.png')
@@ -25,6 +25,7 @@ clock=pygame.time.Clock()
 font=pygame.freetype.SysFont(None, 34)
 font.origin=True
 
+icon_size = 32
 
 class Maze:
     def __init__(self):
@@ -58,10 +59,10 @@ class Maze:
         by = 0
         for i in range(0, self.column * self.row):
             if self.maze[bx + (by * self.column)] == 1:
-                display_surf.blit(image_surf, (bx * 44, by * 44))
+                display_surf.blit(image_surf, (bx * icon_size, by * icon_size))
                 
             if bx == self.player_x and by == self.player_y:
-                display_surf.blit(playerImg, (bx * 44, by * 44))
+                display_surf.blit(playerImg, (bx * icon_size, by * icon_size))
 
             bx = bx + 1
             if bx > self.column - 1:
@@ -86,7 +87,7 @@ class Maze:
 
 maze = Maze();
 
-_block_surf = pygame.image.load("cage.png").convert()
+_block_surf = pygame.image.load("cage32.png").convert()
 
 # Game Loop
 running = True
@@ -118,7 +119,7 @@ while running:
     seconds=int(ticks/1000 % 60)
     minutes=int(ticks/60000 % 24)
     out='{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
-    font.render_to(s, (1600, 1000), out, pygame.Color('dodgerblue'))
+    font.render_to(s, (1000, 800), out, pygame.Color('dodgerblue'))
     maze.draw(s, _block_surf)
     # pygame.display.flip()
 
